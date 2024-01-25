@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Apple Stock Price</title>
+</head>
+<body>
+  <h1>Apple Stock Price</h1>
+  <p id="stockPrice"></p>
+
+  <script>
+    // Make an HTTP request to the Alpha Vantage API
+    fetch('https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=AAPL&apikey=YOUR_API_KEY')
+      .then(response => response.json())
+      .then(data => {
+        // Extract the stock price from the API response
+        const stockPrice = data['Global Quote']['05. price'];
+        
+        // Display the stock price
+        document.getElementById('stockPrice').textContent = 'Apple Stock Price: ' + stockPrice;
+      })
+      .catch(error => {
+        console.log('Error fetching stock price:', error);
+      });
+  </script>
+</body>
+</html>
